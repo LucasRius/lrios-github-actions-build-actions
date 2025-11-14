@@ -1,5 +1,19 @@
 name: 'Deploy to AWS s3'
 description: 'Deploy a statitc site on AWS s3'
+inputs:
+  bucket:
+    description: 'S3 bucket name'
+    required: true
+  bucket-region:
+    description: 'Bucket region'
+    required: false
+    default: 'us-east-1'
+  dist-folder: 
+    description: 'Folder do deployed'
+    required: true
+outputs:
+  site-url: 
+    description: 'SITE URL'
 runs:
   using: node20
   # pre:

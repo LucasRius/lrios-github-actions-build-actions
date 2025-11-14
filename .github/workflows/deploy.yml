@@ -63,10 +63,14 @@ jobs:
       - name: Output contents
         run: ls
       - name: Deploy site
-        run: echo "Deploying..."
-  information:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run Custom action js
+        id: deploy
         uses: ./.github/actions/deploy-s3-js
+        env:
+          AWS_KEY: ${{ secrets.AWS_KEY }}
+          AWS_PASS: ${{ secrets.AWS_PASS }}
+        with:
+          bucket: nome_do_bucket
+          dist-folder: ./dist
+      - name: Output information
+        run: |
+          echo "Live URL: ${{ steps.deploy.outputs.site-url }}"
