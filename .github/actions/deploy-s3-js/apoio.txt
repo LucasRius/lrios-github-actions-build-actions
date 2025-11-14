@@ -1,0 +1,1 @@
+npm install @actions/core  @actions/github  @actions/exec --prefix ./
